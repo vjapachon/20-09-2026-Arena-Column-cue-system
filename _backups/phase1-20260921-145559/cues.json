@@ -1,0 +1,88 @@
+{
+  "cues": [
+    {
+      "id": "f8bb5f74-3b29-41b6-b7ee-c6aa7b076f13",
+      "enabled": true,
+      "name": "etape 1",
+      "column": 10,
+      "type": "CLOCK",
+      "start": "00:02",
+      "duration": 0,
+      "offset": 0,
+      "autoStart": true,
+      "autoNext": true,
+      "notes": ""
+    },
+    {
+      "id": "a91f6b5d-fc27-49dc-8874-9363542a4fb1",
+      "enabled": true,
+      "name": "page 2",
+      "column": 2,
+      "type": "CLOCK",
+      "start": "00:03",
+      "duration": 0,
+      "offset": 0,
+      "autoStart": true,
+      "autoNext": true,
+      "notes": ""
+    },
+    {
+      "id": "7ff4cf4a-447c-4395-ab81-79e38198a63a",
+      "enabled": true,
+      "name": "page 3",
+      "column": 9,
+      "type": "CLOCK",
+      "start": "00:04",
+      "duration": 0,
+      "offset": 0,
+      "autoStart": true,
+      "autoNext": true,
+      "notes": ""
+    },
+    {
+      "id": "bffe47b7-6842-4195-ab84-cf512c309c9e",
+      "enabled": true,
+      "name": "etape 1",
+      "column": 1,
+      "type": "CLOCK",
+      "start": "23:50",
+      "duration": 0,
+      "offset": 0,
+      "autoStart": true,
+      "autoNext": false,
+      "notes": ""
+    },
+    {
+      "id": "1ab680e6-923f-482c-b934-2fe406ef1676",
+      "enabled": true,
+      "name": "111",
+      "column": 14,
+      "type": "CLOCK",
+      "start": "00:44",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "6c3c891c-2382-4ce5-a015-6a49de6c5f6e",
+      "enabled": true,
+      "name": "112",
+      "column": 1,
+      "type": "CLOCK",
+      "start": "",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    }
+  ],
+  "settings": {
+    "globalOffset": 0,
+    "paused": false
+  }
+}

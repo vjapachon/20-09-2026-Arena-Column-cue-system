@@ -1,0 +1,50 @@
+{
+  "cues": [
+    {
+      "id": "a895be37-b616-41e4-8ec1-219bc5010890",
+      "enabled": true,
+      "name": "1",
+      "column": 1,
+      "type": "CLOCK",
+      "start": "15:00",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "208dd712-e325-4ecc-8b01-753755efd4a6",
+      "enabled": true,
+      "name": "2",
+      "column": 2,
+      "type": "CLOCK",
+      "start": "15:01",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "337e3333-f7b8-43c0-8e9b-1edf540b1502",
+      "enabled": true,
+      "name": "3",
+      "column": 3,
+      "type": "CLOCK",
+      "start": "15:03",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    }
+  ],
+  "settings": {
+    "globalOffset": 0,
+    "paused": false
+  }
+}

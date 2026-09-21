@@ -1,0 +1,595 @@
+﻿// ============================================================
+// Arena Column Cue System — Frontend (version propre)
+// ============================================================
+
+const API = '';
+let arenaColumns = [];
+
+let state = {
+  cues: [],
+  settings: { globalOffset: 0, paused: false },
+  running: false,
+  arenaConnected: false,
+  currentCueId: null,
+  zoomMinutes: 1440
+};
+
+// ════════════════════════════════════════════════════════════
+// WEBSOCKET
+// ════════════════════════════════════════════════════════════
+let ws;
+function connectWS() {
+  try {
+    ws = new WebSocket(`ws://${location.host}`);
+  } catch (e) {
+    console.error('WS error:', e);
+    setTimeout(connectWS, 2000);
+    return;
+  }
+
+  ws.onmessage = e => {
+    try {
+      const msg = JSON.parse(e.data);
+      switch (msg.type) {
+        case 'init':
+          state.cues = msg.cues || [];
+          state.settings = msg.settings || state.settings;
+          state.running = msg.running;
+          state.arenaConnected = msg.arenaConnected;
+          renderAll();
+          break;
+        case 'cues-updated':
+          state.cues = msg.cues;
+          renderAll();
+          break;
+        case 'settings-updated':
+          state.settings = msg.settings;
+          updateOffsetInput();
+          updateBigStatus();
+          break;
+        case 'state':
+          state.running = msg.running;
+          updateBigStatus();
+          break;
+        case 'arena-status':
+          state.arenaConnected = msg.connected;
+          updateArenaStatus();
+          break;
+        case 'cue-triggered':
+          state.currentCueId = msg.cue?.id || null;
+          renderTimeline();
+          break;
+      }
+    } catch (err) {
+      console.error('WS parse error:', err);
+    }
+  };
+
+  ws.onclose = () => setTimeout(connectWS, 2000);
+  ws.onerror = () => {};
+}
+
+// ════════════════════════════════════════════════════════════
+// API
+// ════════════════════════════════════════════════════════════
+async function api(path, options = {}) {
+  const res = await fetch(API + path, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options
+  });
+  return res.json();
+}
+
+// ════════════════════════════════════════════════════════════
+// RENDER ALL
+// ════════════════════════════════════════════════════════════
+function renderAll() {
+  renderTable();
+  renderTimeline();
+  updateArenaStatus();
+  updateOffsetInput();
+  updateBigStatus();
+}
+
+// ════════════════════════════════════════════════════════════
+// UTILS TEMPS
+// ════════════════════════════════════════════════════════════
+function formatHMS(totalSeconds) {
+  if (totalSeconds < 0) return '--:--:--';
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = Math.floor(totalSeconds % 60);
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+function secondsUntil(targetHHMM, offsetMin = 0) {
+  if (!targetHHMM || !targetHHMM.includes(':')) return -99999;
+  const [h, m] = targetHHMM.split(':').map(Number);
+  const now = new Date();
+  const target = new Date();
+  target.setHours(h, m + offsetMin, 0, 0);
+  let diff = Math.floor((target - now) / 1000);
+  if (diff < -60) diff += 86400;
+  return diff;
+}
+
+// ════════════════════════════════════════════════════════════
+// ARENA COLUMNS
+// ════════════════════════════════════════════════════════════
+async function loadArenaColumns() {
+  try {
+    const res = await fetch('/api/arena/columns');
+    const data = await res.json();
+    const columns = Array.isArray(data) ? data : (data.columns || []);
+    arenaColumns = columns;
+
+    const select = document.getElementById('cueColumn');
+    if (select) {
+      const currentVal = select.value;
+      select.innerHTML = '';
+      columns.forEach((col, idx) => {
+        const index = col.index || (idx + 1);
+        let name = `Column ${index}`;
+        if (typeof col.name === 'string' && col.name.trim()) name = col.name;
+        else if (col.name && typeof col.name === 'object' && col.name.value) name = col.name.value;
+
+        const opt = document.createElement('option');
+        opt.value = index;
+        opt.textContent = `Column ${index} — ${name}`;
+        select.appendChild(opt);
+      });
+      if (currentVal) select.value = currentVal;
+    }
+  } catch (e) {
+    console.error('loadArenaColumns error:', e);
+  }
+}
+
+function formatArenaColumn(colIndex) {
+  if (!colIndex) return '-';
+  const col = arenaColumns.find(c => Number(c.index) === Number(colIndex));
+  if (!col) return `Column ${colIndex}`;
+  let name = col.name;
+  if (name && typeof name === 'object' && name.value) name = name.value;
+  return `Column ${col.index} — ${name || ''}`;
+}
+
+// ════════════════════════════════════════════════════════════
+// STATUT ARENA
+// ════════════════════════════════════════════════════════════
+function updateArenaStatus() {
+  const dot = document.getElementById('arenaStatus');
+  const txt = document.getElementById('arenaStatusText');
+  if (dot) {
+    dot.classList.toggle('online', state.arenaConnected);
+    dot.classList.toggle('offline', !state.arenaConnected);
+  }
+  if (txt) txt.textContent = state.arenaConnected ? 'Arena connecté' : 'Arena hors ligne';
+}
+
+// ════════════════════════════════════════════════════════════
+// STATUT GÉANT
+// ════════════════════════════════════════════════════════════
+function updateBigStatus() {
+  const el = document.getElementById('bigStatus');
+  const txt = document.getElementById('bigStatusText');
+  if (!el || !txt) return;
+
+  el.classList.remove('running', 'paused', 'stopped');
+
+  if (state.settings?.paused) {
+    el.classList.add('paused');
+    txt.textContent = '🟠 PAUSED';
+  } else if (state.running) {
+    el.classList.add('running');
+    txt.textContent = '🟢 CUE SYSTEM ON';
+  } else {
+    el.classList.add('stopped');
+    txt.textContent = '🔴 STOPPED';
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// TABLEAU
+// ════════════════════════════════════════════════════════════
+function renderTable() {
+  try {
+    const tbody = document.getElementById('cuesTbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    if (!Array.isArray(state.cues) || state.cues.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;color:#8b949e;padding:2rem;">Aucune cue. Cliquez sur "+ Nouvelle Cue"</td></tr>';
+      return;
+    }
+
+    const sorted = [...state.cues]
+      .filter(c => c && c.start)
+      .sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+
+    state.cues.forEach(cue => {
+      if (!cue) return;
+
+      let reste = '--:--:--';
+      if (cue.start) {
+        const sec = secondsUntil(cue.start, (cue.offset || 0) + (state.settings?.globalOffset || 0));
+        reste = sec <= 0 ? 'MAINTENANT' : formatHMS(sec);
+      }
+
+      let next = '--:--:--';
+      const idx = sorted.findIndex(c => c.id === cue.id);
+      if (idx >= 0 && idx < sorted.length - 1) {
+        const nc = sorted[idx + 1];
+        const sec = secondsUntil(nc.start, (nc.offset || 0) + (state.settings?.globalOffset || 0));
+        next = sec <= 0 ? 'MAINTENANT' : formatHMS(sec);
+      }
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${cue.name || '-'}</td>
+        <td>${cue.type || 'CLOCK'}</td>
+        <td class="arena-cell">${formatArenaColumn(cue.column)}</td>
+        <td>${cue.start || '-'}</td>
+        <td>${cue.end || '-'}</td>
+        <td>${cue.duration ? cue.duration + 'm' : '-'}</td>
+        <td>${cue.offset || 0}</td>
+        <td class="countdown-cell">${reste}</td>
+        <td class="countdown-cell">${next}</td>
+        <td>${cue.enabled ? 'READY' : 'OFF'}</td>
+        <td>
+          <button class="btn small" data-action="edit" data-id="${cue.id}">✎</button>
+          <button class="btn small primary" data-action="trigger" data-id="${cue.id}">▶</button>
+          <button class="btn small danger" data-action="delete" data-id="${cue.id}">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll('button[data-action]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.dataset.id;
+        if (btn.dataset.action === 'edit') editCue(id);
+        if (btn.dataset.action === 'trigger') triggerCue(id);
+        if (btn.dataset.action === 'delete') deleteCue(id);
+      };
+    });
+  } catch (err) {
+    console.error('renderTable error:', err);
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// TIMELINE
+// ════════════════════════════════════════════════════════════
+function renderTimeline() {
+  try {
+    const header = document.getElementById('timelineHeader');
+    const body = document.getElementById('timelineBody');
+    const wrapper = document.querySelector('.timeline-wrapper');
+    if (!header || !body || !wrapper) return;
+
+    const scrollLeft = wrapper.scrollLeft;
+    header.innerHTML = '';
+    body.innerHTML = '';
+
+    // Auto-zoom sur les cues
+    let minStart = 1440, maxEnd = 0;
+    state.cues.forEach(cue => {
+      if (!cue.start) return;
+      const [h, m] = cue.start.split(':').map(Number);
+      const startMin = h * 60 + m + (cue.offset || 0) + (state.settings?.globalOffset || 0);
+      const endMin = startMin + (cue.duration || 30);
+      minStart = Math.min(minStart, startMin);
+      maxEnd = Math.max(maxEnd, endMin);
+    });
+
+    if (minStart === 1440) { minStart = 8 * 60; maxEnd = 20 * 60; }
+
+    const rangeStart = Math.max(0, minStart - 15);
+    const rangeEnd = Math.min(1440, maxEnd + 15);
+    const totalMin = Math.max(rangeEnd - rangeStart, 60);
+
+    const wrapperWidth = wrapper.clientWidth || 1200;
+    const pxPerMin = Math.max(wrapperWidth / totalMin, 2);
+    const totalWidth = totalMin * pxPerMin;
+
+    header.style.width = `${totalWidth}px`;
+    header.style.minWidth = `${totalWidth}px`;
+    body.style.width = `${totalWidth}px`;
+    body.style.minWidth = `${totalWidth}px`;
+
+    let stepMin = 60;
+    if (totalMin <= 720) stepMin = 60;
+    if (totalMin <= 360) stepMin = 30;
+    if (totalMin <= 120) stepMin = 15;
+    if (totalMin <= 60)  stepMin = 5;
+    if (totalMin <= 30)  stepMin = 1;
+
+    for (let min = 0; min < totalMin; min += stepMin) {
+      const absMin = rangeStart + min;
+      const h = Math.floor(absMin / 60) % 24;
+      const m = absMin % 60;
+      const div = document.createElement('div');
+      div.className = 'hour-tick';
+      div.style.width = `${stepMin * pxPerMin}px`;
+      div.style.minWidth = `${stepMin * pxPerMin}px`;
+      div.style.flexShrink = '0';
+      div.textContent = stepMin >= 60
+        ? `${String(h).padStart(2,'0')}h`
+        : `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+      header.appendChild(div);
+    }
+
+    const now = new Date();
+    const nowMin = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+
+    state.cues.forEach((cue, idx) => {
+      if (!cue.start) return;
+      const [h, m] = cue.start.split(':').map(Number);
+      const startMin = h * 60 + m + (cue.offset || 0) + (state.settings?.globalOffset || 0);
+      const dur = cue.duration || 30;
+      const endMin = startMin + dur;
+
+      const posX = (startMin - rangeStart) * pxPerMin;
+      if (posX < -100 || posX > totalWidth + 100) return;
+
+      let stateClass = 'state-upcoming';
+      if (!cue.enabled) stateClass = 'state-disabled';
+      else if (nowMin >= startMin && nowMin < endMin) stateClass = 'state-active';
+      else if (nowMin >= endMin) stateClass = 'state-past';
+      else if (startMin - nowMin <= 5) stateClass = 'state-imminent';
+
+      const block = document.createElement('div');
+      block.className = `cue-block ${stateClass}`;
+      block.style.left = `${posX}px`;
+      block.style.width = `${Math.max(dur * pxPerMin, 40)}px`;
+      block.style.top = `${idx * 42 + 10}px`;
+      block.textContent = cue.name || 'Cue';
+      block.dataset.id = cue.id;
+
+      if (stateClass === 'state-active') {
+        const progress = ((nowMin - startMin) / dur) * 100;
+        const bar = document.createElement('div');
+        bar.className = 'progress-bar';
+        bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+        block.appendChild(bar);
+      }
+
+      block.ondblclick = () => editCue(cue.id);
+      body.appendChild(block);
+    });
+
+    if (nowMin >= rangeStart && nowMin <= rangeEnd) {
+      const nowLine = document.createElement('div');
+      nowLine.className = 'now-line';
+      nowLine.style.left = `${(nowMin - rangeStart) * pxPerMin}px`;
+      body.appendChild(nowLine);
+    }
+
+    const maxRows = Math.max(state.cues.length, 5);
+    body.style.height = `${maxRows * 42 + 20}px`;
+
+    wrapper.scrollLeft = scrollLeft;
+  } catch (err) {
+    console.error('renderTimeline error:', err);
+  }
+}
+
+function autoFitTimeline() {
+  renderTimeline();
+}
+
+// ════════════════════════════════════════════════════════════
+// TOPBAR — COMPTEURS + ALERTES
+// ════════════════════════════════════════════════════════════
+function updateTopbarCounters() {
+  const elActive = document.getElementById('cueActive');
+  const elNext = document.getElementById('cueNext');
+  if (!elActive || !elNext) return;
+
+  const sorted = [...state.cues]
+    .filter(c => c.start)
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  const now = new Date();
+  const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+
+  let activeCue = null;
+  sorted.forEach(c => {
+    const [h, m] = c.start.split(':').map(Number);
+    const startSec = h * 3600 + m * 60;
+    const endSec = startSec + (c.duration || 0) * 60;
+    if (nowSec >= startSec && nowSec < endSec) activeCue = c;
+  });
+
+  let nextCue = null;
+  for (const c of sorted) {
+    const sec = secondsUntil(c.start, (c.offset || 0) + (state.settings?.globalOffset || 0));
+    if (sec > 0) { nextCue = c; break; }
+  }
+
+  if (activeCue) {
+    const sec = nowSec - (parseInt(activeCue.start.split(':')[0]) * 3600 + parseInt(activeCue.start.split(':')[1]) * 60);
+    elActive.textContent = formatHMS(sec);
+  } else {
+    elActive.textContent = '--:--:--';
+  }
+
+  if (nextCue) {
+    const sec = secondsUntil(nextCue.start, (nextCue.offset || 0) + (state.settings?.globalOffset || 0));
+    elNext.textContent = formatHMS(sec);
+  } else {
+    elNext.textContent = '--:--:--';
+  }
+}
+
+function updateTopbarAlert() {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+
+  topbar.classList.remove('alert-5min', 'alert-1min');
+
+  const sorted = [...state.cues]
+    .filter(c => c.start && c.enabled)
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  for (const c of sorted) {
+    const sec = secondsUntil(c.start, (c.offset || 0) + (state.settings?.globalOffset || 0));
+    if (sec > 0 && sec <= 60)  { topbar.classList.add('alert-1min'); return; }
+    if (sec > 0 && sec <= 300) { topbar.classList.add('alert-5min'); return; }
+  }
+}
+
+// ════════════════════════════════════════════════════════════
+// OFFSET
+// ════════════════════════════════════════════════════════════
+function updateOffsetInput() {
+  const el = document.getElementById('globalOffset');
+  if (el) el.value = state.settings?.globalOffset || 0;
+}
+
+// ════════════════════════════════════════════════════════════
+// MODAL
+// ════════════════════════════════════════════════════════════
+function openModal(cue = null) {
+  const modal = document.getElementById('modal');
+  if (!modal) { console.error('modal not found'); return; }
+
+  const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  const setChk = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+
+  const title = document.getElementById('modalTitle');
+  if (title) title.textContent = cue ? 'Modifier Cue' : 'Nouvelle Cue';
+
+  setVal('cueId', cue?.id || '');
+  setVal('cueName', cue?.name || '');
+  setVal('cueStart', cue?.start || '');
+  setVal('cueDuration', cue?.duration || '');
+  setVal('cueOffset', cue?.offset || 0);
+  setVal('cueNotes', cue?.notes || '');
+  setChk('cueEnabled', cue?.enabled !== false);
+
+  const colSelect = document.getElementById('cueColumn');
+  if (colSelect) colSelect.value = cue?.column || 1;
+
+  modal.classList.remove('hidden');
+}
+
+function closeModal() {
+  const modal = document.getElementById('modal');
+  if (modal) modal.classList.add('hidden');
+}
+
+// ════════════════════════════════════════════════════════════
+// CRUD
+// ════════════════════════════════════════════════════════════
+async function editCue(id) {
+  const cue = state.cues.find(c => c.id === id);
+  if (cue) openModal(cue);
+}
+
+async function deleteCue(id) {
+  if (!confirm('Supprimer cette cue ?')) return;
+  await api(`/api/cues/${id}`, { method: 'DELETE' });
+}
+
+async function triggerCue(id) {
+  await api(`/api/trigger/${id}`, { method: 'POST' });
+}
+
+// ════════════════════════════════════════════════════════════
+// HORLOGE
+// ════════════════════════════════════════════════════════════
+setInterval(() => {
+  const el = document.getElementById('clock');
+  if (!el) return;
+  const d = new Date();
+  el.textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;
+}, 1000);
+
+// ════════════════════════════════════════════════════════════
+// TICK 1s
+// ════════════════════════════════════════════════════════════
+setInterval(() => {
+  renderTable();
+  updateTopbarCounters();
+  updateTopbarAlert();
+  renderTimeline();
+}, 1000);
+
+setInterval(loadArenaColumns, 10000);
+
+// ════════════════════════════════════════════════════════════
+// BINDINGS (exécuté après DOMContentLoaded)
+// ════════════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  const bind = (id, fn) => {
+    const el = document.getElementById(id);
+    if (el) el.onclick = fn;
+    else console.warn(`⚠️  Élément #${id} introuvable`);
+  };
+
+  bind('btnAddCue', () => openModal());
+  bind('btnCancel', () => closeModal());
+  bind('btnStart', () => api('/api/start', { method: 'POST' }));
+  bind('btnPause', () => api('/api/pause', { method: 'POST' }));
+  bind('btnStop',  () => api('/api/stop',  { method: 'POST' }));
+  bind('btnKill',  () => { if (confirm('TOUT ARRÊTER ?')) api('/api/kill', { method: 'POST' }); });
+  bind('btnAutoFit', () => autoFitTimeline());
+  bind('btnSkip', async () => {
+    const sorted = [...state.cues].filter(c => c.start && c.enabled).sort((a, b) => a.start.localeCompare(b.start));
+    for (const c of sorted) {
+      const sec = secondsUntil(c.start, (c.offset || 0) + (state.settings?.globalOffset || 0));
+      if (sec > 0) { await triggerCue(c.id); return; }
+    }
+  });
+
+  bind('btnApplyOffset', () => {
+    const el = document.getElementById('globalOffset');
+    const offset = Number(el?.value) || 0;
+    api('/api/offset', { method: 'POST', body: JSON.stringify({ offset }) });
+  });
+
+  const zoomSel = document.getElementById('zoomSelect');
+  if (zoomSel) {
+    zoomSel.onchange = e => {
+      state.zoomMinutes = Number(e.target.value);
+      renderTimeline();
+    };
+  }
+
+  const form = document.getElementById('cueForm');
+  if (form) {
+    form.onsubmit = async e => {
+      e.preventDefault();
+      const getV = id => document.getElementById(id)?.value || '';
+      const getC = id => document.getElementById(id)?.checked || false;
+
+      const id = getV('cueId');
+      const payload = {
+        name: getV('cueName'),
+        column: Number(getV('cueColumn')) || 1,
+        type: 'CLOCK',
+        start: getV('cueStart'),
+        duration: Number(getV('cueDuration')) || 0,
+        offset: Number(getV('cueOffset')) || 0,
+        enabled: getC('cueEnabled'),
+        notes: getV('cueNotes')
+      };
+
+      if (id) await api(`/api/cues/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+      else    await api('/api/cues',      { method: 'POST', body: JSON.stringify(payload) });
+
+      closeModal();
+    };
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Boot
+  window.addEventListener('resize', renderTimeline);
+  loadArenaColumns();
+  connectWS();
+});

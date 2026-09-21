@@ -1,0 +1,468 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arena Column Cue System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🎬</span>
+      <span class="brand-name">Arena Column Cue System</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Heure actuelle</span>
+      <span id="clock" class="value">--:--:--</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Cue active</span>
+      <span id="cueActive" class="value accent-green">--:--</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Prochaine cue</span>
+      <span id="cueNext" class="value accent-yellow">--:--</span>
+    </div>
+
+    <div class="status-block">
+      <span id="arenaStatus" class="status-dot offline"></span>
+      <span id="arenaStatusText">Arena</span>
+    </div>
+  </header>
+
+  <!-- ===== CONTROLS ===== -->
+  <section class="controls">
+    <button id="btnStart" class="btn primary">▶ START</button>
+    <button id="btnPause" class="btn">⏸ PAUSE</button>
+    <button id="btnStop"  class="btn warn">⏹ STOP</button>
+    <button id="btnKill"  class="btn danger">🛑 TOUT ARRÊTER</button>
+
+    <div class="spacer"></div>
+
+    <div class="control-group">
+      <label>Global Offset</label>
+      <input type="number" id="globalOffset" value="0" step="1">
+      <span class="unit">min</span>
+      <button id="btnApplyOffset" class="btn small">Appliquer</button>
+    </div>
+
+    <div class="control-group">
+      <label>Zoom</label>
+      <select id="zoomSelect">
+        <option value="1440">24h</option>
+        <option value="720">12h</option>
+        <option value="480" selected>8h</option>
+        <option value="360">6h</option>
+        <option value="60">1h</option>
+        <option value="30">30m</option>
+        <option value="15">15m</option>
+        <option value="10">10m</option>
+      </select>
+    </div>
+
+    <button id="btnAutoFit" class="btn" title="Ajuster le zoom sur les cues">🎯 Auto-fit</button>
+    <button id="btnMapShortcuts" class="btn" title="Assigner les touches AZERTY aux cues">🎹 Mapper</button>
+    <button id="btnToggleShortcuts" class="btn shortcuts-off" title="Activer/Désactiver les raccourcis">⚡ Raccourcis OFF</button>
+    <button id="btnSkip" class="btn" title="Passer à la cue suivante">⏭️ Skip</button>
+
+    <button id="btnExport" class="btn" title="Exporter les cues en JSON">💾 Export</button>
+    <button id="btnImport" class="btn" title="Importer un fichier cues.json">📁 Import</button>
+    <button id="btnImportDoc" class="btn" title="Importer un déroulé (.txt/.pdf/.xlsx)">📥 Déroulé</button>
+    <button id="btnBackups" class="btn" title="Voir les backups automatiques">🔄 Backups</button>
+    <button id="btnNetwork" class="btn" title="Paramètres réseau">⚙️ Réseau</button>
+
+    <button id="btnAddCue" class="btn primary">+ Nouvelle Cue</button>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="timeline-section">
+    <div class="timeline-toolbar">
+      <div class="date-selector">
+        <label>📅 Vue :</label>
+        <button id="btnPrevDay" class="btn small" title="Jour précédent">◀</button>
+        <input type="date" id="timelineDate">
+        <button id="btnToday" class="btn small" title="Aujourd'hui">Aujourd'hui</button>
+        <button id="btnNextDay" class="btn small" title="Jour suivant">▶</button>
+        <span id="timelineDateLabel" class="date-label"></span>
+      </div>
+      <div class="timeline-info">
+        <span id="timelineCount" class="count-info"></span>
+      </div>
+    </div>
+    <div class="timeline-wrapper">
+      <div class="timeline-header" id="timelineHeader"></div>
+      <div class="timeline-body" id="timelineBody"></div>
+    </div>
+  </section>
+
+  <!-- ===== TABLEAU ===== -->
+  <section class="table-wrapper">
+    <table id="cuesTable">
+      <thead>
+        <tr>
+          <th>Touche</th>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Arena</th>
+          <th>Date</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Durée</th>
+          <th>Offset</th>
+          <th>Reste</th>
+          <th>Next</th>
+          <th>État</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cuesTbody"></tbody>
+    </table>
+  </section>
+
+  <!-- ===== MODAL IMPORT DÉROULÉ ===== -->
+  <div id="modalImportDoc" class="modal hidden">
+    <div class="modal-content" style="max-width:900px;">
+      <h2>📥 Importer un déroulé</h2>
+      <p style="font-size:0.85rem;color:#8b949e;margin-bottom:1rem;">
+        Formats acceptés : <strong>.txt</strong>, <strong>.pdf</strong>, <strong>.xlsx</strong><br>
+        Le fichier doit contenir des horaires au format <code>[HH:MM]</code> ou <code>HH:MM</code>.
+      </p>
+
+      <!-- ─── Étape 1 : Upload ─── -->
+      <div id="importStep1">
+        <input type="file" id="importDocFile" accept=".txt,.pdf,.xlsx,.xls,.csv,.md" style="display:none;">
+
+        <div id="importDropzone" class="import-dropzone">
+          <div class="import-icon">📄</div>
+          <p><strong>Clique ou dépose un fichier ici</strong></p>
+          <p style="font-size:0.75rem;">.txt • .pdf • .xlsx</p>
+        </div>
+
+        <div class="net-actions" style="margin-top:1rem;">
+          <button class="btn primary" id="btnAnalyzeDoc" disabled>🔍 Analyser</button>
+        </div>
+      </div>
+
+      <!-- ─── Étape 2 : Prévisualisation ─── -->
+      <div id="importStep2" style="display:none;">
+        <div class="import-status" id="importStatus"></div>
+
+        <div class="import-preview-wrapper">
+          <table class="import-preview">
+            <thead>
+              <tr>
+                <th>✓</th>
+                <th>Début</th>
+                <th>Nom</th>
+                <th>Durée</th>
+                <th>Col</th>
+              </tr>
+            </thead>
+            <tbody id="importPreviewBody"></tbody>
+          </table>
+        </div>
+
+        <div class="net-section" style="margin-top:1rem;">
+          <h3>Mode d'import</h3>
+          <div class="radio-group-net">
+            <label>
+              <input type="radio" name="importMode" value="replace" checked>
+              <div>
+                <strong>Remplacer toutes les cues</strong>
+                <span>Les cues actuelles seront supprimées et remplacées</span>
+              </div>
+            </label>
+            <label>
+              <input type="radio" name="importMode" value="append">
+              <div>
+                <strong>Ajouter aux cues existantes</strong>
+                <span>Les cues actuelles sont conservées, les nouvelles s'ajoutent</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="net-actions" style="margin-top:1rem;">
+          <button class="btn" id="btnImportBack">← Retour</button>
+          <button class="btn primary" id="btnImportGenerate">✅ Générer les cues</button>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btnCloseImportDoc" class="btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL RÉSEAU ===== -->
+  <div id="modalNetwork" class="modal hidden">
+    <div class="modal-content" style="max-width:640px;">
+      <h2>⚙️ Paramètres Réseau</h2>
+
+      <!-- ─── Section 1 : Mode d'écoute ─── -->
+      <div class="net-section">
+        <h3>🌐 Mode d'écoute</h3>
+
+        <div class="radio-group-net">
+          <label>
+            <input type="radio" name="netMode" value="localhost">
+            <div>
+              <strong>Localhost uniquement</strong>
+              <span>Accessible seulement sur ce PC (127.0.0.1)</span>
+            </div>
+          </label>
+          <label>
+            <input type="radio" name="netMode" value="lan">
+            <div>
+              <strong>Réseau local (LAN)</strong>
+              <span>Accessible depuis les autres PC du réseau</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="net-row">
+          <label>Port :</label>
+          <input type="number" id="netPort" min="1024" max="65535" value="3000">
+        </div>
+
+        <div class="net-info-box" id="netInfoBox">
+          <div class="net-info-line">
+            <span>Local :</span>
+            <code id="netUrlLocal">http://localhost:3000</code>
+          </div>
+          <div class="net-info-line" id="netUrlLanLine" style="display:none;">
+            <span>Réseau :</span>
+            <code id="netUrlLan">http://192.168.1.X:3000</code>
+            <button class="btn small" id="btnCopyLan">📋</button>
+          </div>
+          <div class="net-info-line">
+            <span>IP locale :</span>
+            <code id="netLocalIP">—</code>
+          </div>
+          <div class="net-info-line">
+            <span>Hostname :</span>
+            <code id="netHostname">—</code>
+          </div>
+        </div>
+
+        <div class="net-actions">
+          <button class="btn primary" id="btnNetApply">💾 Appliquer et redémarrer</button>
+        </div>
+
+        <div class="net-warning">
+          ⚠️ Changer le mode ou le port nécessite un redémarrage du serveur.
+        </div>
+      </div>
+
+      <!-- ─── Section 2 : QR Code ─── -->
+      <div class="net-section">
+        <h3>📱 QR Code d'accès</h3>
+        <p class="net-hint">Scanne depuis une tablette/téléphone pour accéder à l'app.</p>
+        <div class="qr-container">
+          <img id="netQrImg" src="" alt="QR Code" style="display:none;">
+          <div id="netQrPlaceholder" class="qr-placeholder">Clique pour générer</div>
+        </div>
+        <div class="net-actions">
+          <button class="btn" id="btnGenQr">📱 Générer QR Code</button>
+        </div>
+      </div>
+
+      <!-- ─── Section 3 : Découverte Resolume ─── -->
+      <div class="net-section">
+        <h3>🔍 Découverte Resolume</h3>
+        <p class="net-hint">
+          Cherche les instances Resolume sur le réseau (ZeroConf + scan IP).
+        </p>
+
+        <div class="net-row">
+          <label>Méthode :</label>
+          <select id="netDiscoverMethod">
+            <option value="auto">Automatique (ZeroConf + scan)</option>
+            <option value="zeroconf">ZeroConf uniquement</option>
+            <option value="scan">Scan IP uniquement</option>
+          </select>
+        </div>
+
+        <div class="net-info-box" style="margin-top:0.75rem;">
+          <div class="net-info-line">
+            <span>Arena actuel :</span>
+            <code id="arenaCurrent">127.0.0.1:8080</code>
+            <button class="btn small" id="btnTestArena" title="Tester la connexion">🔌</button>
+          </div>
+          <div class="net-info-line">
+            <span>Statut :</span>
+            <code id="arenaStatusText">—</code>
+          </div>
+        </div>
+
+        <div class="net-actions">
+          <button class="btn primary" id="btnDiscover">🔍 Scanner</button>
+        </div>
+
+        <div id="discoverResults" class="discover-results" style="display:none;">
+          <div id="discoverStatus" class="discover-status"></div>
+          <div id="discoverList" class="discover-list"></div>
+        </div>
+      </div>
+
+      <!-- ─── Section 4 : Wake-on-LAN ─── -->
+      <div class="net-section">
+        <h3>🔌 Wake-on-LAN</h3>
+        <p class="net-hint">
+          Réveiller un PC distant (ex : le PC Resolume).
+        </p>
+
+        <div class="net-row">
+          <label>IP cible :</label>
+          <input type="text" id="wolIP" placeholder="192.168.1.50">
+        </div>
+
+        <div class="net-row">
+          <label>MAC cible :</label>
+          <input type="text" id="wolMAC" placeholder="AA:BB:CC:DD:EE:FF">
+        </div>
+
+        <div class="net-actions">
+          <button class="btn primary" id="btnWolWake">🔌 Réveiller</button>
+        </div>
+
+        <div id="wolStatus" class="wol-status"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="btnCloseNetwork" class="btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== MODAL BACKUPS ===== -->
+  <div id="modalBackups" class="modal hidden">
+    <div class="modal-content" style="max-width:600px;">
+      <h2>🔄 Backups automatiques</h2>
+      <p style="font-size:0.85rem;color:#8b949e;margin-bottom:1rem;">
+        Un backup est créé à chaque modification. Les 20 derniers sont conservés.
+      </p>
+      <div id="backupsList" style="max-height:400px;overflow-y:auto;">
+        <p style="color:#8b949e;">Chargement...</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="btnCloseBackups" class="btn">Fermer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input caché pour import -->
+  <input type="file" id="importFileInput" accept=".json" style="display:none;">
+
+  <!-- ===== MODAL CUE ===== -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Nouvelle Cue</h2>
+      <form id="cueForm">
+        <input type="hidden" id="cueId">
+
+        <label>Raccourci clavier</label>
+        <div id="shortcutDisplay" style="margin-bottom:0.5rem;min-height:24px;">
+          <span style="color:#8b949e;font-size:0.75rem;">Non assigné</span>
+        </div>
+
+        <label for="cueName">Cue Name</label>
+        <input type="text" id="cueName" placeholder="Ex: Page 1" required>
+
+        <label for="cueColumn">Column (Master)</label>
+        <select id="cueColumn">
+          <option value="1">Column 1</option>
+        </select>
+
+        <input type="hidden" name="mode" value="CLOCK">
+
+        <div class="grid-2">
+          <div>
+            <label for="cueStart">Start Time (HH:MM)</label>
+            <input type="time" id="cueStart" step="1" placeholder="HH:MM:SS">
+          </div>
+          <div>
+            <label for="cueDateMode">Date Mode</label>
+            <select id="cueDateMode">
+              <option value="always">Toujours</option>
+              <option value="once">Une fois</option>
+              <option value="daily">Quotidien</option>
+              <option value="weekly">Hebdomadaire</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Champs conditionnels selon Date Mode -->
+
+        <div id="dateFieldOnce" class="date-field-group hidden">
+          <label for="cueDate">Date</label>
+          <input type="date" id="cueDate">
+        </div>
+
+        <div id="dateFieldDaily" class="date-field-group hidden">
+          <label for="cueDateStart">À partir de</label>
+          <input type="date" id="cueDateStart">
+        </div>
+
+        <div id="dateFieldWeekly" class="date-field-group hidden">
+          <label>Jours de la semaine</label>
+          <div class="days-grid">
+            <label><input type="checkbox" class="day-check" value="1"> Lun</label>
+            <label><input type="checkbox" class="day-check" value="2"> Mar</label>
+            <label><input type="checkbox" class="day-check" value="3"> Mer</label>
+            <label><input type="checkbox" class="day-check" value="4"> Jeu</label>
+            <label><input type="checkbox" class="day-check" value="5"> Ven</label>
+            <label><input type="checkbox" class="day-check" value="6"> Sam</label>
+            <label><input type="checkbox" class="day-check" value="0"> Dim</label>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="cueDuration">Duration (min)</label>
+            <input type="number" id="cueDuration" min="0" placeholder="0">
+          </div>
+
+        <label for="cueOffset">Offset (min)</label>
+        <input type="number" id="cueOffset" value="0">
+
+        <div class="checkboxes">
+          <label><input type="checkbox" id="cueAutoStart"> Auto Start</label>
+          <label><input type="checkbox" id="cueAutoNext"> Auto Next</label>
+          <label><input type="checkbox" id="cueEnabled" checked> Enable</label>
+        </div>
+
+        <label for="cueNotes">Notes</label>
+        <textarea id="cueNotes" rows="3" placeholder="Notes libres..."></textarea>
+
+        <div class="modal-actions">
+          <button type="button" id="btnCancel" class="btn">Annuler</button>
+          <button type="submit" class="btn primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

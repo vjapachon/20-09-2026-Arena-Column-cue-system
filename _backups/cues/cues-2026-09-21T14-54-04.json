@@ -1,0 +1,64 @@
+{
+  "cues": [
+    {
+      "id": "a895be37-b616-41e4-8ec1-219bc5010890",
+      "enabled": true,
+      "name": "1",
+      "column": 1,
+      "type": "CLOCK",
+      "start": "15:31",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "208dd712-e325-4ecc-8b01-753755efd4a6",
+      "enabled": true,
+      "name": "2",
+      "column": 2,
+      "type": "CLOCK",
+      "start": "15:32",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "337e3333-f7b8-43c0-8e9b-1edf540b1502",
+      "enabled": true,
+      "name": "3",
+      "column": 3,
+      "type": "CLOCK",
+      "start": "15:33",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": []
+    },
+    {
+      "id": "f24cc896-209c-4dc2-a2d5-9f32c206fce7",
+      "enabled": true,
+      "name": "1123",
+      "column": 8,
+      "type": "CLOCK",
+      "start": "15:34",
+      "duration": 0,
+      "offset": 0,
+      "notes": "",
+      "dateMode": "once",
+      "date": "2026-09-22",
+      "daysOfWeek": []
+    }
+  ],
+  "settings": {
+    "globalOffset": 0,
+    "paused": false
+  }
+}

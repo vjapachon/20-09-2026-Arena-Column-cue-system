@@ -1,0 +1,2008 @@
+﻿{
+    "cues":  [
+                 {
+                     "id":  "221aa928-3990-4246-b5dc-7f34cef1b988",
+                     "start":  "18:45:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  1,
+                     "lineNumber":  1,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "90b378dd-d491-4a71-a57d-5ea24bafba89",
+                     "start":  "18:45:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  2,
+                     "lineNumber":  3,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "d6308be1-cdcd-4dd3-951f-84d3fdec394e",
+                     "start":  "19:45:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  3,
+                     "lineNumber":  8,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "b3eb3b58-2f80-4286-a827-59e681da34c3",
+                     "start":  "19:45:00",
+                     "section":  "VO : Mot de Binevnue + PrÃ©sentation OST - Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  82860,
+                     "column":  4,
+                     "lineNumber":  10,
+                     "name":  "VO : Mot de Binevnue + PrÃ©sentation OST - Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8e6adcb6-4699-4d1e-8022-f5e53908298b",
+                     "start":  "18:46:00",
+                     "section":  "Music Live : OST - Sur fosse + Ambiance Musique 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  240,
+                     "column":  5,
+                     "lineNumber":  12,
+                     "name":  "Music Live : OST - Sur fosse + Ambiance Musique 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "a3cb83b6-753f-43f8-b00a-f91235366ada",
+                     "start":  "18:50:00",
+                     "section":  "VO : Remerciement et PrÃ©sentation OST + PrÃ©sentation de la Maitresse de CÃ©rÃ©monie - Poursuite sur MC + Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  6,
+                     "lineNumber":  15,
+                     "name":  "VO : Remerciement et PrÃ©sentation OST + PrÃ©sentation de la Maitresse de CÃ©rÃ©monie - Poursuite sur MC + Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "9c57b314-1ade-495c-8cef-09343d1c620d",
+                     "start":  "18:50:00",
+                     "section":  "Micro MC - Tapis en lumiÃ¨re blanche de 2m de large au plein centre de la scÃ¨ne",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  7,
+                     "lineNumber":  17,
+                     "name":  "Micro MC - Tapis en lumiÃ¨re blanche de 2m de large au plein centre de la scÃ¨ne",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "bda13adf-3b60-4ff7-94ca-bd8a644985ac",
+                     "start":  "18:54:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur charte SÃ©nÃ©gal",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  8,
+                     "lineNumber":  20,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur charte SÃ©nÃ©gal",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "0723b8f6-942d-4a8e-b367-ca56f3d6a3fb",
+                     "start":  "18:55:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  9,
+                     "lineNumber":  26,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "b8d36412-c49f-4886-a7cb-1a434031a169",
+                     "start":  "18:57:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur charte Jordanie",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  10,
+                     "lineNumber":  29,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur charte Jordanie",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "54b5a9bb-f40f-4a4e-894c-97071f9d33d1",
+                     "start":  "18:58:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  11,
+                     "lineNumber":  35,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "9a144e8e-d739-4537-871e-d737e3192b84",
+                     "start":  "19:00:00",
+                     "section":  "VO : PrÃ©sentation Arjoun - Sur fosse + Artistes sur scÃ¨ne",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  12,
+                     "lineNumber":  38,
+                     "name":  "VO : PrÃ©sentation Arjoun - Sur fosse + Artistes sur scÃ¨ne",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "31ddd98c-80a9-458f-98d8-772373159b65",
+                     "start":  "19:00:00",
+                     "section":  "Music Live : OST + Arjoun - Ambiance Musique 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  300,
+                     "column":  13,
+                     "lineNumber":  40,
+                     "name":  "Music Live : OST + Arjoun - Ambiance Musique 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "419cfa1a-2230-46fc-9915-cd8d6e06ce4b",
+                     "start":  "19:06:00",
+                     "section":  "Micro MC - Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  14,
+                     "lineNumber":  43,
+                     "name":  "Micro MC - Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "a916fdb0-8394-4c89-bd07-a48fec9ecdd7",
+                     "start":  "19:06:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  15,
+                     "lineNumber":  45,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance selon couleur Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "2b5b3311-f683-4962-b91b-1386e7300678",
+                     "start":  "19:06:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  16,
+                     "lineNumber":  49,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8cd5a81e-5a82-4412-beb8-21a68f6bdf5f",
+                     "start":  "19:07:00",
+                     "section":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CinÃ©-Promesse",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  17,
+                     "lineNumber":  51,
+                     "name":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CinÃ©-Promesse",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "da9aee2a-c194-4aba-8e7e-e43247598bf0",
+                     "start":  "19:08:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  18,
+                     "lineNumber":  55,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ee3e8da8-ba03-4c6a-a425-2a586a31eea8",
+                     "start":  "19:09:00",
+                     "section":  "VO : Acceuil Jury CinÃ©-Pormesse - Jury CinÃ©-Promesse en Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  19,
+                     "lineNumber":  57,
+                     "name":  "VO : Acceuil Jury CinÃ©-Pormesse - Jury CinÃ©-Promesse en Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "5d8e3976-b496-44cb-aa60-5f630d5f92cb",
+                     "start":  "19:09:00",
+                     "section":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte cinÃ©-Promesse",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  20,
+                     "lineNumber":  61,
+                     "name":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte cinÃ©-Promesse",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "7d54a3cf-e4d0-4a45-adc9-a24ef3ea488c",
+                     "start":  "19:09:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  21,
+                     "lineNumber":  65,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "17d9feba-ab17-476c-bb40-af78d0d1e059",
+                     "start":  "19:10:00",
+                     "section":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CinÃ©ma Tunisien",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  22,
+                     "lineNumber":  68,
+                     "name":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CinÃ©ma Tunisien",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6527fa85-9f60-417d-b2a9-2d43aebe4742",
+                     "start":  "19:12:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  23,
+                     "lineNumber":  74,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "bac9370e-e8f9-478b-b205-72c5b072c095",
+                     "start":  "19:12:00",
+                     "section":  "VO : Acceuil Jury CompÃ©tition Nationale - Jury CompÃ©tition Nationale en Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  24,
+                     "lineNumber":  76,
+                     "name":  "VO : Acceuil Jury CompÃ©tition Nationale - Jury CompÃ©tition Nationale en Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "47eb6f01-e8f9-439f-871e-6a882bded263",
+                     "start":  "19:13:00",
+                     "section":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CompÃ©tition Nationale",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  25,
+                     "lineNumber":  81,
+                     "name":  "Micro MC - LumiÃ¨res sur MC + ambiance selon couleur charte CompÃ©tition Nationale",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "c73b9761-fef1-43ba-8515-505e99f189c5",
+                     "start":  "19:13:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  26,
+                     "lineNumber":  86,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "e9a2c8d0-74b9-46aa-b29e-68f03befb725",
+                     "start":  "19:14:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + Ambiance charte DOC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  27,
+                     "lineNumber":  89,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + Ambiance charte DOC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "5f02daab-c4b0-42cc-a05f-65ca9db12eab",
+                     "start":  "19:15:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  28,
+                     "lineNumber":  94,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6bed66de-938a-4a63-8250-102a7d075efb",
+                     "start":  "19:16:00",
+                     "section":  "VO : Acceuil Jury DOC - Jury DOC en Salle + ambiance selon couleur charte DOC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  29,
+                     "lineNumber":  96,
+                     "name":  "VO : Acceuil Jury DOC - Jury DOC en Salle + ambiance selon couleur charte DOC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "3eb93394-a9ff-467b-b340-b276d4cf6f44",
+                     "start":  "19:16:00",
+                     "section":  "Micro MC - Jury DOC en Salle + ambiance selon couleur charte DOC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  30,
+                     "lineNumber":  101,
+                     "name":  "Micro MC - Jury DOC en Salle + ambiance selon couleur charte DOC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8f470a97-c82d-416c-9156-b6d9887a46f2",
+                     "start":  "19:16:00",
+                     "section":  "VTR CompÃ©tition DOC - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  31,
+                     "lineNumber":  106,
+                     "name":  "VTR CompÃ©tition DOC - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "51da69e6-6b2c-4c8b-91e8-be508c2afc96",
+                     "start":  "19:19:00",
+                     "section":  "VO : PrÃ©sentation Dana Salah - Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  32,
+                     "lineNumber":  109,
+                     "name":  "VO : PrÃ©sentation Dana Salah - Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "c3f533de-5349-41f3-a438-1f30bd81a059",
+                     "start":  "19:19:00",
+                     "section":  "Music Live : Dana Salah + OST + CHRL - Ambiance Music Palestine",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  360,
+                     "column":  33,
+                     "lineNumber":  111,
+                     "name":  "Music Live : Dana Salah + OST + CHRL - Ambiance Music Palestine",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "180da866-38e9-4d78-8c9f-8524e91390b3",
+                     "start":  "19:25:00",
+                     "section":  "Micro MC - Ambiance JCC Palestine",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  34,
+                     "lineNumber":  114,
+                     "name":  "Micro MC - Ambiance JCC Palestine",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "613903f3-6b5e-4f0a-bb65-a3aa7a4b9933",
+                     "start":  "19:25:00",
+                     "section":  "Micro MC - Ambiance JCC Palestine",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  35,
+                     "lineNumber":  116,
+                     "name":  "Micro MC - Ambiance JCC Palestine",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "42bee947-67e4-4dc8-a7e0-bd0c3fe32094",
+                     "start":  "19:27:00",
+                     "section":  "VO : Accueil Raouf Ben Amor et Aisha Ben Ahmed - Ambiance Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  36,
+                     "lineNumber":  122,
+                     "name":  "VO : Accueil Raouf Ben Amor et Aisha Ben Ahmed - Ambiance Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "083d505f-ee1e-4889-82f0-1f886396946b",
+                     "start":  "19:28:00",
+                     "section":  "Micro Mc + Raouf + Aisha - Ambiance Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  37,
+                     "lineNumber":  127,
+                     "name":  "Micro Mc + Raouf + Aisha - Ambiance Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "524dad91-ad2b-4528-beba-a3a1e5d16941",
+                     "start":  "19:29:00",
+                     "section":  "Micro Mc + Raouf + Aisha - Ambiance Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  38,
+                     "lineNumber":  133,
+                     "name":  "Micro Mc + Raouf + Aisha - Ambiance Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6a7f71fc-5e56-4b51-b370-d0433bfcb622",
+                     "start":  "19:30:00",
+                     "section":  "Micro MC - Ambiance CompÃ©tition Officielle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  39,
+                     "lineNumber":  139,
+                     "name":  "Micro MC - Ambiance CompÃ©tition Officielle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "d0053da0-62a9-4012-b62c-3e4bb54bf9fb",
+                     "start":  "19:31:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  40,
+                     "lineNumber":  145,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "fb3cb406-1d65-40c6-9066-e33d829b537b",
+                     "start":  "19:33:00",
+                     "section":  "VO : Acceuil Grand Jury - LumiÃ¨re Grand Jury en salle + Ambiance CompÃ©tition Officielle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  41,
+                     "lineNumber":  148,
+                     "name":  "VO : Acceuil Grand Jury - LumiÃ¨re Grand Jury en salle + Ambiance CompÃ©tition Officielle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "92851edd-7209-4ac8-b6e7-5041082ed7d6",
+                     "start":  "19:33:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  42,
+                     "lineNumber":  153,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "203909b3-2e15-4645-85a3-79a6692a23f1",
+                     "start":  "19:34:00",
+                     "section":  "VO : Acceuil PrÃ©sident Grand Jury - Ambiance CompÃ©tition Officielle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  43,
+                     "lineNumber":  155,
+                     "name":  "VO : Acceuil PrÃ©sident Grand Jury - Ambiance CompÃ©tition Officielle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "3b60c550-2168-4d0e-bb0b-bba519bcbb85",
+                     "start":  "19:34:00",
+                     "section":  "Micro Puppitre - Ambiance CompÃ©tition Officielle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  44,
+                     "lineNumber":  160,
+                     "name":  "Micro Puppitre - Ambiance CompÃ©tition Officielle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "cabf1bc0-1b81-41bd-8627-68f91f77434f",
+                     "start":  "19:36:00",
+                     "section":  "VTR - Black Out Stage + Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  45,
+                     "lineNumber":  166,
+                     "name":  "VTR - Black Out Stage + Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "cf3c6a19-7b4e-4196-8e2d-27060619a5ee",
+                     "start":  "19:39:00",
+                     "section":  "OST + Music Electronic - Conduite LumiÃ¨re ChorÃ©graphie",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  46,
+                     "lineNumber":  169,
+                     "name":  "OST + Music Electronic - Conduite LumiÃ¨re ChorÃ©graphie",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "947108f1-584d-4be0-be18-3e98222a35d9",
+                     "start":  "19:42:00",
+                     "section":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah - Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  47,
+                     "lineNumber":  172,
+                     "name":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah - Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "aeff2e07-904f-4cac-adfe-7848241125eb",
+                     "start":  "19:43:00",
+                     "section":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah - Ambiance Logo JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  48,
+                     "lineNumber":  174,
+                     "name":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah - Ambiance Logo JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "39e160db-6bf8-400d-a147-753788eb6d68",
+                     "start":  "19:43:00",
+                     "section":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  49,
+                     "lineNumber":  176,
+                     "name":  "VO : Remerciement Ballet + OST + ChorÃ©graphe + Wadhah",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "9622715d-27c6-45e7-abbd-0c14b2250415",
+                     "start":  "19:43:00",
+                     "section":  "VO : PrÃ©sentation du synopsis Film d\u0027ouverture - LumiÃ¨re en Avant scÃ¨ne",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  50,
+                     "lineNumber":  178,
+                     "name":  "VO : PrÃ©sentation du synopsis Film d\u0027ouverture - LumiÃ¨re en Avant scÃ¨ne",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ef9f34dc-581b-4f5e-8e09-96caf57f6ed0",
+                     "start":  "19:44:00",
+                     "section":  "VO : PrÃ©sentation du synopsis Film d\u0027ouverture - LumiÃ¨re en Avant scÃ¨ne",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  51,
+                     "lineNumber":  180,
+                     "name":  "VO : PrÃ©sentation du synopsis Film d\u0027ouverture - LumiÃ¨re en Avant scÃ¨ne",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "3531aa59-aa07-43bb-8144-f82e90ece74c",
+                     "start":  "21:00:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  52,
+                     "lineNumber":  183,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "fb1d85df-8ad7-4701-8568-c316bdf8917c",
+                     "start":  "21:00:00",
+                     "section":  "VO - LumiÃ¨re sur Salle",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  53,
+                     "lineNumber":  185,
+                     "name":  "VO - LumiÃ¨re sur Salle",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "36c12da6-8097-46f7-ab93-bcb04fc08544",
+                     "start":  "21:01:00",
+                     "section":  "Music on Stage :",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  240,
+                     "column":  54,
+                     "lineNumber":  187,
+                     "name":  "Music on Stage :",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "da2cf263-35be-4d4a-b81e-0bdbe0e95255",
+                     "start":  "21:06:00",
+                     "section":  "VO - Ambiance Visuel JCC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  55,
+                     "lineNumber":  191,
+                     "name":  "VO - Ambiance Visuel JCC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "a7e77a27-0b8d-47a7-bbd5-526bcdab80c0",
+                     "start":  "21:06:00",
+                     "section":  "VO - Ambiance Avant VTR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  56,
+                     "lineNumber":  193,
+                     "name":  "VO - Ambiance Avant VTR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ddf72b4d-2915-4f33-a120-3d84da593bdd",
+                     "start":  "21:06:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  57,
+                     "lineNumber":  197,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "e9d0dcbb-3c09-4d1a-b58d-165ca7753165",
+                     "start":  "21:07:00",
+                     "section":  "VO + Micro MC - Poursuite sur MC",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  58,
+                     "lineNumber":  200,
+                     "name":  "VO + Micro MC - Poursuite sur MC",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "33062174-0477-44b2-a610-d3aa7cc29616",
+                     "start":  "21:10:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  59,
+                     "lineNumber":  203,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "4d86a275-14ef-4758-b5ec-49febe9589ad",
+                     "start":  "21:13:00",
+                     "section":  "VO - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  60,
+                     "lineNumber":  209,
+                     "name":  "VO - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "03d6a317-6afd-414b-b25c-78dddf858d2a",
+                     "start":  "21:14:00",
+                     "section":  "Micro MC - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  61,
+                     "lineNumber":  211,
+                     "name":  "Micro MC - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "301cb37f-73b3-4929-8629-786d602097f3",
+                     "start":  "21:16:00",
+                     "section":  "VO - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  62,
+                     "lineNumber":  217,
+                     "name":  "VO - LumiÃ¨re sur MC + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8f2fc4e6-e367-4d96-973b-d3079cab9d84",
+                     "start":  "21:17:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  63,
+                     "lineNumber":  222,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ae21446d-c89b-46f9-9d14-50db89c0bc28",
+                     "start":  "21:18:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  64,
+                     "lineNumber":  228,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "7700be0c-8409-410a-95c0-669b78e4c504",
+                     "start":  "21:20:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  65,
+                     "lineNumber":  236,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 1",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8438592b-c2b3-4e9e-966f-10f9bd735039",
+                     "start":  "21:21:00",
+                     "section":  "VO - Ambiance Avant VTR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  66,
+                     "lineNumber":  242,
+                     "name":  "VO - Ambiance Avant VTR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "b3b48deb-6daa-47a6-a0bf-20d874c04170",
+                     "start":  "21:21:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  67,
+                     "lineNumber":  244,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "a0f2a0c8-4c39-451c-907c-3081bc9d0f42",
+                     "start":  "21:23:00",
+                     "section":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  180,
+                     "column":  68,
+                     "lineNumber":  247,
+                     "name":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "22c1b44a-4d3b-4c93-88df-d6c6c466270f",
+                     "start":  "21:26:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  69,
+                     "lineNumber":  257,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "24f9ddf4-57e3-48f4-9df6-0aa7c42dfe03",
+                     "start":  "21:28:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  70,
+                     "lineNumber":  263,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "b169262a-cfc5-441a-b2de-62af3da27d62",
+                     "start":  "21:29:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  71,
+                     "lineNumber":  269,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "c04b14ad-403b-4924-89a0-3efa296ed8dc",
+                     "start":  "21:31:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  72,
+                     "lineNumber":  275,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "f1031808-cf2a-4ed1-890a-012d2b61c77d",
+                     "start":  "21:32:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  73,
+                     "lineNumber":  281,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "408fca1b-4a58-45ae-90db-c1240d35f61f",
+                     "start":  "21:34:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  74,
+                     "lineNumber":  287,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 2",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "54ee2f15-1911-4530-b0fc-9979b9d65855",
+                     "start":  "21:35:00",
+                     "section":  "VO - Ambiance Avant VTR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  75,
+                     "lineNumber":  293,
+                     "name":  "VO - Ambiance Avant VTR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "b57bd2df-dc1b-4acb-9255-367006d93167",
+                     "start":  "21:36:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  76,
+                     "lineNumber":  295,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "bd7514a1-a007-43fa-abc6-c5b4f1b8d863",
+                     "start":  "21:38:00",
+                     "section":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  77,
+                     "lineNumber":  298,
+                     "name":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "512a1d12-3120-4e05-956a-ab53467b99bd",
+                     "start":  "21:39:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  78,
+                     "lineNumber":  303,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6a19045c-30a9-425c-8769-2ffc75ad49cc",
+                     "start":  "21:41:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  79,
+                     "lineNumber":  309,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "aa1f5cee-54f9-4568-9d5a-f8c80831a142",
+                     "start":  "21:42:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  80,
+                     "lineNumber":  315,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ff2bed1c-dd8a-4375-bc0a-8ed16e0f8519",
+                     "start":  "21:44:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  81,
+                     "lineNumber":  321,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "9dba7c9f-70e6-4cc2-98c0-81ccaf4bfad5",
+                     "start":  "21:45:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  82,
+                     "lineNumber":  327,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "8f4778f1-3183-4c3f-995a-0760517909d1",
+                     "start":  "21:47:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  83,
+                     "lineNumber":  333,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ca4a44eb-92bf-44ce-9736-ab09bc5e76e5",
+                     "start":  "21:48:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  84,
+                     "lineNumber":  339,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 3",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "96bb1155-2a11-4848-8bd9-accf14d0b69e",
+                     "start":  "21:50:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  85,
+                     "lineNumber":  345,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ecbc619d-2baf-4211-8381-064aeb311c81",
+                     "start":  "21:51:00",
+                     "section":  "VO - MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Hommage",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  120,
+                     "column":  86,
+                     "lineNumber":  348,
+                     "name":  "VO - MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Hommage",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "fa52485c-2247-4a9d-8908-9256ceff8e31",
+                     "start":  "21:54:00",
+                     "section":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  87,
+                     "lineNumber":  354,
+                     "name":  "VO - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "16795a5f-ec93-4709-a38a-2d814d0900db",
+                     "start":  "21:54:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  88,
+                     "lineNumber":  359,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "a00f458c-14a7-433c-8c27-15b080163292",
+                     "start":  "21:55:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  89,
+                     "lineNumber":  365,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6842c7ed-8d4f-4d75-b863-44af9f1fa13d",
+                     "start":  "21:57:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  90,
+                     "lineNumber":  371,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "7ab368a8-ce23-4dfe-949f-460e39b91c89",
+                     "start":  "21:58:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  91,
+                     "lineNumber":  377,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6d4a5f23-a0ab-4b36-8058-c5267000723f",
+                     "start":  "22:00:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  92,
+                     "lineNumber":  383,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "78917247-8209-40c1-beb6-61ed723db818",
+                     "start":  "22:01:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  93,
+                     "lineNumber":  389,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Bloc 4",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "88482572-63d4-4a64-921a-ea1562b94c38",
+                     "start":  "22:03:00",
+                     "section":  "VO - Ambiance Avant VTR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  86400,
+                     "column":  94,
+                     "lineNumber":  395,
+                     "name":  "VO - Ambiance Avant VTR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "6a90646f-8b1a-458a-b745-19e084e975ce",
+                     "start":  "22:03:00",
+                     "section":  "VTR - Black Out",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  240,
+                     "column":  95,
+                     "lineNumber":  397,
+                     "name":  "VTR - Black Out",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "ed4170af-4aab-4f7e-b541-72a66891052e",
+                     "start":  "22:07:00",
+                     "section":  "VO - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  96,
+                     "lineNumber":  400,
+                     "name":  "VO - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "415573c9-3c37-42eb-b0b9-24ddd9a23d60",
+                     "start":  "22:08:00",
+                     "section":  "Music Stage - Ambiance Musique 2 sur Fosse",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  240,
+                     "column":  97,
+                     "lineNumber":  402,
+                     "name":  "Music Stage - Ambiance Musique 2 sur Fosse",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "42de77d2-6b99-47db-b0f2-6d5adfac5ccf",
+                     "start":  "22:12:00",
+                     "section":  "MC - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  60,
+                     "column":  98,
+                     "lineNumber":  405,
+                     "name":  "MC - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "83d275dc-2a47-4605-b91f-1d31c50fa20d",
+                     "start":  "22:13:00",
+                     "section":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  240,
+                     "column":  99,
+                     "lineNumber":  410,
+                     "name":  "MC - Puppitre - LumiÃ¨re sur MC + Jury + ambiance Tanit D\u0027OR",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 },
+                 {
+                     "id":  "9b3a594e-cd7b-4a96-8bf3-89a301f39366",
+                     "start":  "22:17:00",
+                     "section":  "MC - Puppitre",
+                     "ecran":  "",
+                     "surfaces":  "",
+                     "duration":  1800,
+                     "column":  100,
+                     "lineNumber":  416,
+                     "name":  "MC - Puppitre",
+                     "type":  "CLOCK",
+                     "dateMode":  "always",
+                     "date":  "",
+                     "daysOfWeek":  [
+
+                                    ],
+                     "offset":  0,
+                     "enabled":  true,
+                     "notes":  ""
+                 }
+             ],
+    "settings":  {
+                     "globalOffset":  0,
+                     "paused":  false
+                 }
+}

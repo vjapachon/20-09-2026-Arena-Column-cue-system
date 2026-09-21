@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arena Column Cue System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🎬</span>
+      <span class="brand-name">Arena Column Cue System</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Heure actuelle</span>
+      <span id="clock" class="value">--:--:--</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Cue active</span>
+      <span id="cueActive" class="value accent-green">--:--</span>
+    </div>
+
+    <div class="clock-block">
+      <span class="label">Prochaine cue</span>
+      <span id="cueNext" class="value accent-yellow">--:--</span>
+    </div>
+
+    <div class="status-block">
+      <span id="arenaStatus" class="status-dot offline"></span>
+      <span id="arenaStatusText">Arena</span>
+    </div>
+  </header>
+
+  <!-- ===== CONTROLS ===== -->
+  <section class="controls">
+    <button id="btnStart" class="btn primary">▶ START</button>
+    <button id="btnPause" class="btn">⏸ PAUSE</button>
+    <button id="btnStop"  class="btn warn">⏹ STOP</button>
+    <button id="btnKill"  class="btn danger">🛑 TOUT ARRÊTER</button>
+
+    <div class="spacer"></div>
+
+    <div class="control-group">
+      <label>Global Offset</label>
+      <input type="number" id="globalOffset" value="0" step="1">
+      <span class="unit">min</span>
+      <button id="btnApplyOffset" class="btn small">Appliquer</button>
+    </div>
+
+    <div class="control-group">
+      <label>Zoom</label>
+      <select id="zoomSelect">
+        <option value="1440">24h</option>
+        <option value="720">12h</option>
+        <option value="360">6h</option>
+        <option value="60">1h</option>
+        <option value="30">30m</option>
+        <option value="15">15m</option>
+        <option value="10">10m</option>
+      </select>
+    </div>
+
+    <button id="btnAddCue" class="btn primary">+ Nouvelle Cue</button>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="timeline-wrapper">
+    <div class="timeline-header" id="timelineHeader"></div>
+    <div class="timeline-body" id="timelineBody"></div>
+  </section>
+
+  <!-- ===== TABLEAU ===== -->
+  <section class="table-wrapper">
+    <table id="cuesTable">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Type</th>
+          <th>Début</th>
+          <th>Fin</th>
+          <th>Durée</th>
+          <th>Offset</th>
+          <th>Reste</th>
+          <th>Next</th>
+          <th>État</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cuesTbody"></tbody>
+    </table>
+  </section>
+
+  <!-- ===== MODAL CUE ===== -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">Nouvelle Cue</h2>
+      <form id="cueForm">
+        <input type="hidden" id="cueId">
+
+        <label for="cueName">Cue Name</label>
+        <input type="text" id="cueName" placeholder="Ex: Page 1" required>
+
+        <label for="cueColumn">Column (Master)</label>
+        <select id="cueColumn">
+          <option value="1">Column 1</option>
+        </select>
+
+        <input type="hidden" name="mode" value="CLOCK">
+
+        <div class="grid-2">
+          <div>
+            <label for="cueStart">Start Time (HH:MM)</label>
+            <input type="time" id="cueStart">
+          </div>
+          <div>
+            <label for="cueDateMode">Date Mode</label>
+            <select id="cueDateMode">
+              <option value="always">Toujours</option>
+              <option value="once">Une fois</option>
+              <option value="daily">Quotidien</option>
+              <option value="weekly">Hebdomadaire</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Champs conditionnels selon Date Mode -->
+
+        <div id="dateFieldOnce" class="date-field-group hidden">
+          <label for="cueDate">Date</label>
+          <input type="date" id="cueDate">
+        </div>
+
+        <div id="dateFieldDaily" class="date-field-group hidden">
+          <label for="cueDateStart">À partir de</label>
+          <input type="date" id="cueDateStart">
+        </div>
+
+        <div id="dateFieldWeekly" class="date-field-group hidden">
+          <label>Jours de la semaine</label>
+          <div class="days-grid">
+            <label><input type="checkbox" class="day-check" value="1"> Lun</label>
+            <label><input type="checkbox" class="day-check" value="2"> Mar</label>
+            <label><input type="checkbox" class="day-check" value="3"> Mer</label>
+            <label><input type="checkbox" class="day-check" value="4"> Jeu</label>
+            <label><input type="checkbox" class="day-check" value="5"> Ven</label>
+            <label><input type="checkbox" class="day-check" value="6"> Sam</label>
+            <label><input type="checkbox" class="day-check" value="0"> Dim</label>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <label for="cueDuration">Duration (min)</label>
+            <input type="number" id="cueDuration" min="0" placeholder="0">
+          </div>
+
+        <label for="cueOffset">Offset (min)</label>
+        <input type="number" id="cueOffset" value="0">
+
+        <div class="checkboxes">
+          <label><input type="checkbox" id="cueAutoStart"> Auto Start</label>
+          <label><input type="checkbox" id="cueAutoNext"> Auto Next</label>
+          <label><input type="checkbox" id="cueEnabled" checked> Enable</label>
+        </div>
+
+        <label for="cueNotes">Notes</label>
+        <textarea id="cueNotes" rows="3" placeholder="Notes libres..."></textarea>
+
+        <div class="modal-actions">
+          <button type="button" id="btnCancel" class="btn">Annuler</button>
+          <button type="submit" class="btn primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,26 @@
+{
+  "cues": [
+    {
+      "id": "a453681f-1a76-499d-bf46-4c9b0c813113",
+      "start": "23:21:10",
+      "section": "1 - 1. Apparition d’un sable doux",
+      "ecran": "",
+      "surfaces": "",
+      "duration": 15,
+      "column": 2,
+      "lineNumber": 1,
+      "name": "1 - 1. Apparition d’un sable doux",
+      "type": "CLOCK",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": [],
+      "offset": 0,
+      "enabled": true,
+      "notes": ""
+    }
+  ],
+  "settings": {
+    "globalOffset": 0,
+    "paused": false
+  }
+}

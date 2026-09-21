@@ -1,0 +1,571 @@
+﻿let arenaColumns = [];
+// ============================================================
+// Arena Column Cue System — Frontend
+// ============================================================
+
+const API = '';
+
+let state = {
+  cues: [],
+  settings: { globalOffset: 0, paused: false },
+  running: false,
+  arenaConnected: false,
+  currentCueId: null,
+  zoomMinutes: 1440
+};
+
+// ---------- WEBSOCKET ----------
+let ws;
+function connectWS() {
+  ws = new WebSocket(`ws://${location.host}`);
+
+  ws.onmessage = e => {
+    const msg = JSON.parse(e.data);
+
+    switch (msg.type) {
+      case 'init':
+        state.cues = msg.cues || [];
+        state.settings = msg.settings || state.settings;
+        state.running = msg.running;
+        state.arenaConnected = msg.arenaConnected;
+        renderAll();
+        break;
+
+      case 'cues-updated':
+        state.cues = msg.cues;
+        renderAll();
+        break;
+
+      case 'settings-updated':
+        state.settings = msg.settings;
+        updateOffsetInput();
+        break;
+
+      case 'state':
+        state.running = msg.running;
+        updateBigStatus();
+        break;
+
+      case 'arena-status':
+        state.arenaConnected = msg.connected;
+        updateArenaStatus();
+        break;
+
+      case 'cue-triggered':
+        state.currentCueId = msg.cue.id;
+        renderTimeline();
+        break;
+    }
+  };
+
+  ws.onclose = () => setTimeout(connectWS, 2000);
+}
+
+// ---------- API ----------
+async function api(path, options = {}) {
+  const res = await fetch(API + path, {
+    headers: { 'Content-Type': 'application/json' },
+    ...options
+  });
+  return res.json();
+}
+
+// ---------- RENDER ALL ----------
+function renderAll() {
+  renderTable();
+  renderTimeline();
+  updateArenaStatus();
+  updateOffsetInput();
+  updateBigStatus();
+}
+
+// ---------- ARENA STATUS ----------
+function updateArenaStatus() {
+  const dot = document.getElementById('arenaStatus');
+  const txt = document.getElementById('arenaStatusText');
+  dot.classList.toggle('online', state.arenaConnected);
+  dot.classList.toggle('offline', !state.arenaConnected);
+  txt.textContent = state.arenaConnected ? 'Arena connecté' : 'Arena hors ligne';
+}
+
+// ---------- TABLEAU ----------
+function renderTable() {
+  try {
+    const tbody = document.getElementById('cuesTbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    if (!Array.isArray(state.cues) || state.cues.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="11" style="text-align:center;color:#8b949e;padding:2rem;">Aucune cue. Cliquez sur "+ Nouvelle Cue"</td></tr>';
+      return;
+    }
+
+    // Trie les cues par heure de départ
+    const sorted = [...state.cues]
+      .filter(c => c && c.start)
+      .sort((a, b) => (a.start || '').localeCompare(b.start || ''));
+
+    state.cues.forEach(cue => {
+      if (!cue) return;
+
+      // Calcul "Reste" (secondes)
+      let reste = '--:--:--';
+      if (cue.start) {
+        try {
+          const sec = secondsUntil(
+            cue.start,
+            (cue.offset || 0) + (state.settings?.globalOffset || 0)
+          );
+          reste = sec <= 0 ? 'MAINTENANT' : formatHMS(sec);
+        } catch(e) { reste = '--:--:--'; }
+      }
+
+      // Calcul "Next"
+      let next = '--:--:--';
+      const idx = sorted.findIndex(c => c.id === cue.id);
+      if (idx >= 0 && idx < sorted.length - 1) {
+        const nextCue = sorted[idx + 1];
+        try {
+          const sec = secondsUntil(
+            nextCue.start,
+            (nextCue.offset || 0) + (state.settings?.globalOffset || 0)
+          );
+          next = sec <= 0 ? 'MAINTENANT' : formatHMS(sec);
+        } catch(e) { next = '--:--:--'; }
+      }
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${cue.name || '-'}</td>
+        <td>${cue.type || 'CLOCK'}</td>
+        <td class="arena-cell">${formatArenaColumn(cue.column)}</td>
+        <td>${cue.start || '-'}</td>
+        <td>${cue.end || '-'}</td>
+        <td>${cue.duration ? cue.duration + 'm' : '-'}</td>
+        <td>${cue.offset || 0}</td>
+        <td class="countdown-cell">${reste}</td>
+        <td class="countdown-cell">${next}</td>
+        <td>${cue.enabled ? 'READY' : 'OFF'}</td>
+        <td>
+          <button class="btn small" data-action="edit" data-id="${cue.id}">✎</button>
+          <button class="btn small primary" data-action="trigger" data-id="${cue.id}">▶</button>
+          <button class="btn small danger" data-action="delete" data-id="${cue.id}">✕</button>
+        </td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    tbody.querySelectorAll('button[data-action]').forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.dataset.id;
+        if (btn.dataset.action === 'edit') editCue(id);
+        if (btn.dataset.action === 'trigger') triggerCue(id);
+        if (btn.dataset.action === 'delete') deleteCue(id);
+      };
+    });
+
+    if (typeof updateTopbarCounters === 'function') updateTopbarCounters();
+  } catch (err) {
+    console.error('❌ Erreur renderTable:', err);
+  }
+}
+
+// Formate un nombre de SECONDES en "HH:MM:SS"
+function formatHMS(totalSeconds) {
+  if (totalSeconds < 0) return '--:--:--';
+  const h = Math.floor(totalSeconds / 3600);
+  const m = Math.floor((totalSeconds % 3600) / 60);
+  const s = totalSeconds % 60;
+  return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+// Calcule les secondes restantes jusqu'à une heure HH:MM (aujourd'hui ou demain)
+function secondsUntil(targetHHMM, offsetMin = 0) {
+  const [h, m] = targetHHMM.split(':').map(Number);
+  const now = new Date();
+  const target = new Date();
+  target.setHours(h, m + offsetMin, 0, 0);
+  let diff = Math.floor((target - now) / 1000);
+  if (diff < -60) diff += 86400; // Si déjà passé de plus d'1 min, c'est pour demain
+  return diff;
+}
+
+// ---------- TIMELINE ----------
+function renderTimeline() {
+  const header = document.getElementById('timelineHeader');
+  const body = document.getElementById('timelineBody');
+  const wrapper = document.querySelector('.timeline-wrapper');
+  if (!header || !body || !wrapper) return;
+
+  const scrollLeft = wrapper.scrollLeft;
+
+  // --- AUTO-ZOOM sur les cues ---
+  let minStart = 1440, maxEnd = 0;
+  state.cues.forEach(cue => {
+    if (!cue.start) return;
+    const [h, m] = cue.start.split(':').map(Number);
+    const startMin = h * 60 + m + (cue.offset || 0) + (state.settings?.globalOffset || 0);
+    const endMin = startMin + (cue.duration || 30);
+    minStart = Math.min(minStart, startMin);
+    maxEnd = Math.max(maxEnd, endMin);
+  });
+
+  // Si aucune cue → plage par défaut 8h-20h
+  if (minStart === 1440) { minStart = 8 * 60; maxEnd = 20 * 60; }
+
+  // Marge ±15 min
+  const rangeStart = Math.max(0, minStart - 15);
+  const rangeEnd = Math.min(1440, maxEnd + 15);
+  const totalMin = rangeEnd - rangeStart;
+
+  // Taille du bloc px/min : adapté pour remplir l'écran
+  const wrapperWidth = wrapper.clientWidth || 1200;
+  const pxPerMin = Math.max(wrapperWidth / totalMin, 1.5);
+  const totalWidth = totalMin * pxPerMin;
+
+  header.style.width = `${totalWidth}px`;
+  header.style.minWidth = `${totalWidth}px`;
+  body.style.width = `${totalWidth}px`;
+  body.style.minWidth = `${totalWidth}px`;
+
+  header.innerHTML = '';
+  body.innerHTML = '';
+
+  // Pas des graduations
+  let stepMin = 60;
+  if (totalMin <= 720) stepMin = 60;
+  if (totalMin <= 360) stepMin = 30;
+  if (totalMin <= 120) stepMin = 15;
+  if (totalMin <= 60)  stepMin = 5;
+  if (totalMin <= 30)  stepMin = 1;
+
+  // Header graduations
+  for (let min = 0; min < totalMin; min += stepMin) {
+    const absMin = rangeStart + min;
+    const h = Math.floor(absMin / 60) % 24;
+    const m = absMin % 60;
+    const div = document.createElement('div');
+    div.className = 'hour-tick';
+    div.style.width = `${stepMin * pxPerMin}px`;
+    div.style.minWidth = `${stepMin * pxPerMin}px`;
+    div.style.flexShrink = '0';
+    div.textContent = stepMin >= 60
+      ? `${String(h).padStart(2,'0')}h`
+      : `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`;
+    header.appendChild(div);
+  }
+
+  // Calcul de l'état temporel de chaque cue
+  const now = new Date();
+  const nowMin = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+
+  // Blocs cues
+  state.cues.forEach((cue, idx) => {
+    if (!cue.start) return;
+    const [h, m] = cue.start.split(':').map(Number);
+    const startMin = h * 60 + m + (cue.offset || 0) + (state.settings?.globalOffset || 0);
+    const dur = cue.duration || 30;
+    const endMin = startMin + dur;
+
+    // Position dans la plage visible
+    const posX = (startMin - rangeStart) * pxPerMin;
+    if (posX < -100 || posX > totalWidth + 100) return; // hors plage
+
+    // Détermine l'état
+    let stateClass = 'state-upcoming';
+    if (!cue.enabled) stateClass = 'state-disabled';
+    else if (nowMin >= startMin && nowMin < endMin) stateClass = 'state-active';
+    else if (nowMin >= endMin) stateClass = 'state-past';
+    else if (startMin - nowMin <= 5) stateClass = 'state-imminent';
+    else if (nowMin > startMin) stateClass = 'state-overdue';
+
+    const block = document.createElement('div');
+    block.className = `cue-block ${stateClass}`;
+    block.style.left = `${posX}px`;
+    block.style.width = `${Math.max(dur * pxPerMin, 40)}px`;
+    block.style.top = `${idx * 42 + 10}px`;
+    block.textContent = cue.name || 'Cue';
+    block.dataset.id = cue.id;
+
+    // Barre de progression si actif
+    if (stateClass === 'state-active') {
+      const progress = ((nowMin - startMin) / dur) * 100;
+      const bar = document.createElement('div');
+      bar.className = 'progress-bar';
+      bar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      block.appendChild(bar);
+    }
+
+    block.ondblclick = () => editCue(cue.id);
+    body.appendChild(block);
+  });
+
+  // Ligne MAINTENANT (si dans la plage visible)
+  if (nowMin >= rangeStart && nowMin <= rangeEnd) {
+    const nowLine = document.createElement('div');
+    nowLine.className = 'now-line';
+    nowLine.style.left = `${(nowMin - rangeStart) * pxPerMin}px`;
+    body.appendChild(nowLine);
+  }
+
+  const maxRows = Math.max(state.cues.length, 5);
+  body.style.height = `${maxRows * 42 + 20}px`;
+
+  wrapper.scrollLeft = scrollLeft;
+}
+
+// Ajuste le zoom pour voir toutes les cues
+function autoFitTimeline() {
+  renderTimeline();
+}
+function closeModal() {
+  modal.classList.add('hidden');
+}
+
+form.onsubmit = async e => {
+  e.preventDefault();
+
+  const id = document.getElementById('cueId').value;
+  const payload = {
+    name: document.getElementById('cueName').value,
+    column: Number(document.getElementById('cueColumn').value) || 1,
+    type: 'CLOCK',
+    start: document.getElementById('cueStart').value,
+    duration: Number(document.getElementById('cueDuration').value) || 0,
+    offset: Number(document.getElementById('cueOffset').value) || 0,
+    autoStart: document.getElementById('cueAutoStart').checked,
+    autoNext: document.getElementById('cueAutoNext').checked,
+    enabled: document.getElementById('cueEnabled').checked,
+    notes: document.getElementById('cueNotes').value
+  };
+
+  if (id) {
+    await api(`/api/cues/${id}`, { method: 'PUT', body: JSON.stringify(payload) });
+  } else {
+    await api('/api/cues', { method: 'POST', body: JSON.stringify(payload) });
+  }
+
+  closeModal();
+};
+
+// ---------- ACTIONS ----------
+async function editCue(id) {
+  const cue = state.cues.find(c => c.id === id);
+  if (cue) openModal(cue);
+}
+
+async function deleteCue(id) {
+  if (!confirm('Supprimer cette cue ?')) return;
+  await api(`/api/cues/${id}`, { method: 'DELETE' });
+}
+
+async function triggerCue(id) {
+  await api(`/api/trigger/${id}`, { method: 'POST' });
+}
+
+// ---------- OFFSET ----------
+function updateOffsetInput() {
+  document.getElementById('globalOffset').value = state.settings.globalOffset || 0;
+}
+
+// ---------- BINDINGS ----------
+document.getElementById('btnAddCue').onclick = () => openModal();
+
+document.getElementById('btnAutoFit').onclick = () => autoFitTimeline();
+
+document.getElementById('btnSkip').onclick = async () => {
+  // Trouve la première cue future et la déclenche manuellement
+  const sorted = [...state.cues]
+    .filter(c => c.start && c.enabled)
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  for (const c of sorted) {
+    const sec = secondsUntil(c.start, (c.offset || 0) + (state.settings?.globalOffset || 0));
+    if (sec > 0) { await triggerCue(c.id); return; }
+  }
+};
+document.getElementById('btnCancel').onclick = () => closeModal();
+
+document.getElementById('btnStart').onclick = () => api('/api/start', { method: 'POST' });
+document.getElementById('btnPause').onclick = () => api('/api/pause', { method: 'POST' });
+document.getElementById('btnStop').onclick  = () => api('/api/stop',  { method: 'POST' });
+document.getElementById('btnKill').onclick  = () => {
+  if (confirm('TOUT ARRÊTER ? Cette action va tout réinitialiser.')) {
+    api('/api/kill', { method: 'POST' });
+  }
+};
+
+document.getElementById('btnApplyOffset').onclick = () => {
+  const offset = Number(document.getElementById('globalOffset').value) || 0;
+  api('/api/offset', { method: 'POST', body: JSON.stringify({ offset }) });
+};
+
+document.getElementById('zoomSelect').onchange = e => {
+  state.zoomMinutes = Number(e.target.value);
+  renderTimeline();
+};
+
+// Fermer modal avec ESC
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
+});
+
+// ---------- BOOT ----------
+window.addEventListener('resize', renderTimeline);
+
+// --- Chargement des columns Resolume ---
+async function loadArenaColumns() {
+  try {
+    const res = await fetch('/api/arena/columns');
+    const data = await res.json();
+
+    const select = document.getElementById('cueColumn');
+    if (!select) return;
+    const currentVal = select.value;
+    select.innerHTML = '';
+
+    // data est un tableau direct [{index, id, name}]
+    const columns = Array.isArray(data) ? data : (data.columns || []);
+
+    columns.forEach((col, idx) => {
+      const index = col.index || (idx + 1);
+
+      // Extrait name (robuste : string OU objet ParamString)
+      let name = `Column ${index}`;
+      if (typeof col.name === 'string' && col.name.trim()) {
+        name = col.name;
+      } else if (col.name && typeof col.name === 'object' && col.name.value) {
+        name = col.name.value;
+      }
+
+      const opt = document.createElement('option');
+      opt.value = index;
+      opt.textContent = `Column ${index} — ${name}`;
+      select.appendChild(opt);
+    });
+
+    if (currentVal) select.value = currentVal;
+
+    console.log(`✅ ${columns.length} colonne(s) chargée(s)`);
+  } catch (e) {
+    console.error('❌ Impossible de charger les columns:', e);
+  }
+}
+
+loadArenaColumns();
+setInterval(loadArenaColumns, 10000);
+
+// Rafraîchit les compteurs toutes les 10 secondes
+setInterval(() => {
+  renderTable();
+  updateTopbarCounters();
+  updateTopbarAlert();
+  renderTimeline();
+}, 1000);
+
+connectWS();
+
+
+
+// Met à jour les compteurs de la topbar (Cue active + Prochaine cue)
+function updateTopbarCounters() {
+  const elActive = document.getElementById('cueActive');
+  const elNext = document.getElementById('cueNext');
+
+  const sorted = [...state.cues]
+    .filter(c => c.start)
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  // Cue active = celle en cours (start <= maintenant < start+durée)
+  let activeCue = null;
+  const now = new Date();
+  const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+
+  sorted.forEach(c => {
+    const [h, m] = c.start.split(':').map(Number);
+    const startSec = h * 3600 + m * 60;
+    const endSec = startSec + (c.duration || 0) * 60;
+    if (nowSec >= startSec && nowSec < endSec) {
+      activeCue = c;
+    }
+  });
+
+  // Prochaine cue = première cue future
+  let nextCue = null;
+  for (const c of sorted) {
+    const sec = secondsUntil(
+      c.start,
+      (c.offset || 0) + (state.settings.globalOffset || 0)
+    );
+    if (sec > 0) { nextCue = c; break; }
+  }
+
+  if (activeCue) {
+    const sec = secondsUntil(
+      activeCue.start,
+      (activeCue.offset || 0) + (state.settings.globalOffset || 0)
+    );
+    elActive.textContent = formatHMS(sec);
+  } else {
+    elActive.textContent = '--:--:--';
+  }
+
+  if (nextCue) {
+    const sec = secondsUntil(
+      nextCue.start,
+      (nextCue.offset || 0) + (state.settings.globalOffset || 0)
+    );
+    elNext.textContent = formatHMS(sec);
+  } else {
+    elNext.textContent = '--:--:--';
+  }
+}
+
+function formatArenaColumn(colIndex) {
+  if (!colIndex) return '-';
+  const col = (typeof arenaColumns !== 'undefined' ? arenaColumns : [])
+    .find(c => Number(c.index) === Number(colIndex));
+  if (!col) return `Column ${colIndex}`;
+  const name = (typeof col.name === 'object' && col.name.value) ? col.name.value : col.name;
+  return `Column ${col.index} — ${name}`;
+}
+
+
+
+// Met à jour la barre d'état géante
+function updateBigStatus() {
+  const el = document.getElementById('bigStatus');
+  const txt = document.getElementById('bigStatusText');
+  if (!el || !txt) return;
+
+  el.classList.remove('running', 'paused', 'stopped');
+
+  if (state.settings?.paused) {
+    el.classList.add('paused');
+    txt.textContent = '🟠 PAUSED';
+  } else if (state.running) {
+    el.classList.add('running');
+    txt.textContent = '🟢 CUE SYSTEM ON';
+  } else {
+    el.classList.add('stopped');
+    txt.textContent = '🔴 STOPPED';
+  }
+}
+
+// Alerte topbar T-5min / T-1min
+function updateTopbarAlert() {
+  const topbar = document.querySelector('.topbar');
+  if (!topbar) return;
+
+  topbar.classList.remove('alert-5min', 'alert-1min');
+
+  const sorted = [...state.cues]
+    .filter(c => c.start && c.enabled)
+    .sort((a, b) => a.start.localeCompare(b.start));
+
+  for (const c of sorted) {
+    const sec = secondsUntil(c.start, (c.offset || 0) + (state.settings?.globalOffset || 0));
+    if (sec > 0 && sec <= 60)  { topbar.classList.add('alert-1min'); return; }
+    if (sec > 0 && sec <= 300) { topbar.classList.add('alert-5min'); return; }
+  }
+}

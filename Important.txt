@@ -1,0 +1,40 @@
+IMPORTANT - READ THIS FIRST
+This package contains two ZIP files:
+
+1. ArenaColumnCueSystem_Distribution.zip
+This is the ready-to-use version for end users.
+
+Instructions
+Extract the ZIP file.
+Open the extracted folder.
+Run:
+ArenaColumnCueSystem.exe
+No installation or development setup is required.
+
+2. node_modules.zip
+This archive contains the project's node_modules folder.
+
+It is intended for developers only.
+
+The folder was compressed because it contains thousands of files and could not be uploaded directly to GitHub.
+
+Instructions
+Download the project source code.
+Extract the project folder.
+Extract node_modules.zip.
+Place the extracted node_modules folder in the project root.
+The structure should look like:
+
+ArenaColumnCueSystem/
+├── server.js
+├── package.json
+├── node_modules/
+└── ...
+Alternative
+Instead of using node_modules.zip, developers can install the dependencies normally:
+
+npm install
+GitHub Repository
+https://github.com/vjapachon/ArenaColumnCueSystem
+
+Made with ❤️ and a lot of vibecoding.

@@ -1,0 +1,44 @@
+{
+  "cues": [
+    {
+      "id": "a453681f-1a76-499d-bf46-4c9b0c813113",
+      "start": "23:21:10",
+      "section": "1 - 1. Apparition d’un sable doux",
+      "ecran": "",
+      "surfaces": "",
+      "duration": 15,
+      "column": 2,
+      "lineNumber": 1,
+      "name": "1 - 1. Apparition d’un sable doux",
+      "type": "CLOCK",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": [],
+      "offset": 0,
+      "enabled": true,
+      "notes": ""
+    },
+    {
+      "id": "38274116-e910-436f-8a20-93492a31ba7c",
+      "start": "00:00:10",
+      "section": "1 - 2. Apparition du “Palais de l’Éternité”",
+      "ecran": "",
+      "surfaces": "",
+      "duration": 1440,
+      "column": 2,
+      "lineNumber": 4,
+      "name": "1 - 2. Apparition du “Palais de l’Éternité”",
+      "type": "CLOCK",
+      "dateMode": "always",
+      "date": "",
+      "daysOfWeek": [],
+      "offset": 0,
+      "enabled": true,
+      "notes": ""
+    }
+  ],
+  "settings": {
+    "globalOffset": 0,
+    "paused": false
+  }
+}
